@@ -1,7 +1,10 @@
+%define dist .fc4
+%define fedora 4
+
 Name:         	feh 
 Version:        1.3.0
-Release:        2
-Summary:        Image viewer using Imlib2
+Release:        3%{?dist}
+Summary:        Fast command line image viewer using Imlib2
 
 Group:          Applications/Multimedia
 License:        BSD
@@ -44,8 +47,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man[^3]/*
 
 %changelog
-* Wed May 30 2005 Aaron Kurtz <a.kurtz@hardsun.net> - 0:1.3.0-2
-  Spec file cleanup, plus would upgrade linuxbrit rpm.
+* Mon Apr 25 2005 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.0-3
+  Spec file cleanup, dist tag
 
-* Fri May 25 2005 Aaron Kurtz <a.kurtz@hardsun.net> - 0:1.3.0-1
-- Initial Fedora RPM release.
+* Wed Mar 30 2005 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.0-2
+  Spec file cleanup, plus would upgrade linuxbrit rpm
+
+* Fri Mar 25 2005 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.0-1
+- Initial Fedora RPM release
