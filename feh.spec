@@ -2,14 +2,14 @@
 %define fedora 4
 
 Name:         	feh 
-Version:        1.3.0
-Release:        3%{?dist}
+Version:        1.3.1
+Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 
 Group:          Applications/Multimedia
 License:        BSD
 URL:            http://linuxbrit.co.uk/feh/
-Source0:        http://linuxbrit.co.uk/feh/feh-1.3.0.tar.gz
+Source0:        http://linuxbrit.co.uk/downloads/feh-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: giblib-devel imlib2-devel libjpeg-devel libpng-devel
@@ -47,6 +47,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man[^3]/*
 
 %changelog
+* Tue May 03 2005 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.1-1
+  Bump to 1.3.1
+
 * Mon Apr 25 2005 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.0-3
   Spec file cleanup, dist tag
 
