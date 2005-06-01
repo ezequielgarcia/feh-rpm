@@ -1,6 +1,3 @@
-%define dist .fc4
-%define fedora 4
-
 Name:         	feh 
 Version:        1.3.1
 Release:        1%{?dist}
@@ -47,6 +44,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man[^3]/*
 
 %changelog
+* Wed Jun 01 2005 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.1-2
+- proper dist tag
+
 * Tue May 03 2005 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.1-1
   Bump to 1.3.1
 
