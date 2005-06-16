@@ -1,6 +1,6 @@
 Name:         	feh 
 Version:        1.3.1
-Release:        1%{?dist}
+Release:        3%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 
 Group:          Applications/Multimedia
@@ -44,6 +44,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man[^3]/*
 
 %changelog
+* Thu Jun 16 2005 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.1-3
+- do it right this time
+
 * Wed Jun 01 2005 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.1-2
 - proper dist tag
 
