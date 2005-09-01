@@ -1,6 +1,9 @@
+# No desktop file for feh. It may be a GUI program, but it needs 
+# file names or it just spits out the help.
+
 Name:         	feh 
-Version:        1.3.1
-Release:        3%{?dist}
+Version:        1.3.4
+Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 
 Group:          Applications/Multimedia
@@ -44,6 +47,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man[^3]/*
 
 %changelog
+* Wed Aug 31 2005 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.4-1
+- bump to 1.3.4
+
 * Thu Jun 16 2005 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.1-3
 - do it right this time
 
