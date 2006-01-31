@@ -3,7 +3,7 @@
 
 Name:         	feh 
 Version:        1.3.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 
 Group:          Applications/Multimedia
@@ -13,6 +13,7 @@ Source0:        http://linuxbrit.co.uk/downloads/feh-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: giblib-devel imlib2-devel libjpeg-devel libpng-devel
+BuildRequires: libXt-devel
 
 %description
 feh is a versatile and fast image viewer using imlib2, the
@@ -47,6 +48,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man[^3]/*
 
 %changelog
+* Tue Jan 31 2006 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.4-2
+- change to new modular X devel BuildReqs
+
 * Wed Aug 31 2005 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.4-1
 - bump to 1.3.4
 
