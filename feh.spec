@@ -3,7 +3,7 @@
 
 Name:         	feh 
 Version:        1.3.4
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 
 Group:          Applications/Multimedia
@@ -48,6 +48,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man[^3]/*
 
 %changelog
+* Thu Aug 31 2006 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.4-4
+- Rebuild for Fedora Extras 6
+
 * Mon Feb 13 2006 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.4-3
 - Rebuild for Fedora Extras 5
 
