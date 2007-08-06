@@ -3,17 +3,15 @@
 
 Name:         	feh 
 Version:        1.3.4
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Fast command line image viewer using Imlib2
-
 Group:          Applications/Multimedia
-License:        BSD
+License:        MIT
 URL:            http://linuxbrit.co.uk/feh/
 Source0:        http://linuxbrit.co.uk/downloads/feh-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
-BuildRequires: giblib-devel imlib2-devel libjpeg-devel libpng-devel
-BuildRequires: libXt-devel
+BuildRequires:  giblib-devel imlib2-devel libjpeg-devel libpng-devel
+BuildRequires:  libXt-devel
 
 %description
 feh is a versatile and fast image viewer using imlib2, the
@@ -21,6 +19,7 @@ premier image file handling library. feh has many features,
 from simple single file viewing, to multiple file modes using
 a slideshow or multiple windows. feh supports the creation of
 montages as index prints with many user-configurable options.
+
 
 %prep
 %setup -q
@@ -37,8 +36,10 @@ make install DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -type f -name "*.la" -exec rm -f {} ';'
 rm -rf $RPM_BUILD_ROOT/usr/doc
 
+
 %clean
 rm -rf $RPM_BUILD_ROOT
+
 
 %files
 %defattr(-,root,root,-)
@@ -48,6 +49,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man[^3]/*
 
 %changelog
+* Mon Aug  6 2007 Hans de Goede <j.w.r.degoede@hhs.nl> 1.3.4-5
+- Update License tag for new Licensing Guidelines compliance
+
 * Thu Aug 31 2006 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.4-4
 - Rebuild for Fedora Extras 6
 
