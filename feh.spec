@@ -3,7 +3,7 @@
 
 Name:         	feh 
 Version:        1.3.4
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
@@ -49,6 +49,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man[^3]/*
 
 %changelog
+* Tue Feb 19 2008 Fedora Release Engineering <rel-eng@fedoraproject.org> - 1.3.4-6
+- Autorebuild for GCC 4.3
+
 * Mon Aug  6 2007 Hans de Goede <j.w.r.degoede@hhs.nl> 1.3.4-5
 - Update License tag for new Licensing Guidelines compliance
 
