@@ -3,12 +3,13 @@
 
 Name:         	feh 
 Version:        1.3.4
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
 URL:            http://linuxbrit.co.uk/feh/
 Source0:        http://linuxbrit.co.uk/downloads/feh-%{version}.tar.gz
+Patch0:         feh-1.3.4-missing-protos.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  giblib-devel imlib2-devel libjpeg-devel libpng-devel
 BuildRequires:  libXt-devel
@@ -23,6 +24,7 @@ montages as index prints with many user-configurable options.
 
 %prep
 %setup -q
+%patch0 -p1
 
 
 %build
@@ -49,6 +51,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man[^3]/*
 
 %changelog
+* Thu Apr  3 2008 Hans de Goede <j.w.r.degoede@hhs.nl> 1.3.4-7
+- Fix missing prototype compiler warnings
+
 * Tue Feb 19 2008 Fedora Release Engineering <rel-eng@fedoraproject.org> - 1.3.4-6
 - Autorebuild for GCC 4.3
 
