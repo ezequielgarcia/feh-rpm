@@ -1,15 +1,21 @@
 # No desktop file for feh. It may be a GUI program, but it needs 
 # file names or it just spits out the help.
 
-Name:         	feh 
+Name:           feh 
 Version:        1.3.4
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
 URL:            http://linuxbrit.co.uk/feh/
-Source0:        http://linuxbrit.co.uk/downloads/feh-%{version}.tar.gz
+# This is: http://linuxbrit.co.uk/downloads/feh-%{version}.tar.gz with
+# feh-1.3.4/src/menubg_britney.png (which is non free) removed
+Source0:        %{name}-%{version}.tar.gz
 Patch0:         feh-1.3.4-missing-protos.patch
+Patch1:         feh-1.3.4-remove_britney_references.patch
+Patch2:         feh-1.3.4-svn-fixes.patch
+Patch3:         feh-1.3.4-man.patch
+Patch4:         feh-1.3.4-bz441527.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  giblib-devel imlib2-devel libjpeg-devel libpng-devel
 BuildRequires:  libXt-devel
@@ -25,6 +31,10 @@ montages as index prints with many user-configurable options.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 
 %build
@@ -50,7 +60,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}
 %{_mandir}/man[^3]/*
 
+
 %changelog
+* Thu Apr 10 2008 Hans de Goede <j.w.r.degoede@hhs.nl> 1.3.4-8
+- Remove non free menubg_britney.png from sources
+- Apply various fixes from svn
+- Some makeup fixes to the manpage (courtesy of debian)
+- Fix escaping of filenames in "feh --bg-scale" (bz 441527)
+
 * Thu Apr  3 2008 Hans de Goede <j.w.r.degoede@hhs.nl> 1.3.4-7
 - Fix missing prototype compiler warnings
 
