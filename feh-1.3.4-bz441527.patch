@@ -1,0 +1,72 @@
+diff -up feh-1.3.4/src/support.c.foo feh-1.3.4/src/support.c
+--- feh-1.3.4/src/support.c.foo	2008-04-10 11:38:46.000000000 +0200
++++ feh-1.3.4/src/support.c	2008-04-10 11:38:46.000000000 +0200
+@@ -27,6 +27,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE 
+ #include "filelist.h"
+ #include "options.h"
+ #include "support.h"
++#include <limits.h>
+ Window ipc_win = None;
+ Window my_ipc_win = None;
+ Atom ipc_atom = None;
+@@ -162,7 +163,7 @@ feh_wm_set_bg(char *fil, Imlib_Image im,
+       /* string for sticking in ~/.fehbg */
+       char *fehbg = NULL;
+       char *home;
+-      char filbuf[4096];
++      char filbuf[PATH_MAX];
+ 
+       /* local display to set closedownmode on */
+       Display *disp2;
+@@ -170,11 +171,22 @@ feh_wm_set_bg(char *fil, Imlib_Image im,
+       int depth2;
+       XGCValues gcvalues;
+       GC gc;
+-      int w, h;
++      int in, out, w, h;
+ 
+       D(3, ("Falling back to XSetRootWindowPixmap\n"));
+       
+-      snprintf(filbuf, sizeof(filbuf), "\"%s\"", fil);
++      /* Put the filename in filbuf between ' and escape ' in the filename */
++      out = 0;
++      filbuf[out++] = '\'';
++      for (in = 0; fil[in] && out < (PATH_MAX-4); in++) {
++         if (fil[in] == '\'') {
++            filbuf[out++] = '\\';
++         }
++         filbuf[out++] = fil[in];
++      }
++      filbuf[out++] = '\'';
++      filbuf[out++] = 0;
++      
+       if (scaled) {
+          w = scr->width;
+          h = scr->height;
+diff -up feh-1.3.4/src/options.c.foo feh-1.3.4/src/options.c
+--- feh-1.3.4/src/options.c.foo	2008-04-10 11:25:55.000000000 +0200
++++ feh-1.3.4/src/options.c	2008-04-10 11:25:55.000000000 +0200
+@@ -985,7 +985,7 @@ show_usage(void)
+ "                           Feh stores the commandline necessary to restore\n"
+ "                           the background you chose in ~/.fehbg. So to have\n"
+ "                           feh-set backgrounds restored when you restart X,\n"
+-"                           add the line \"eval `cat $HOME/.fehbg`\" to your\n"
++"                           add the line \"`cat $HOME/.fehbg`\" to your\n"
+ "                           X startup script (e.g. ~/.xsession). Note that\n"
+ "                           you only need to do this for non E window\n"
+ "                           managers.\n"
+ "     --fontpath PATH       Specify an extra directory to look in for fonts,\n"
+ "                           can be used multiple times to add multiple paths.\n"
+ " -M, --menu-font FONT      Use FONT for the font in menus.\n"
+diff -up feh-1.3.4/feh.1.foo feh-1.3.4/feh.1
+--- feh-1.3.4/feh.1.foo	2008-04-10 11:25:55.000000000 +0200
++++ feh-1.3.4/feh.1	2008-04-10 11:25:55.000000000 +0200
+@@ -258,7 +258,7 @@ it, or will fall back to X methods.
+ Feh stores the commandline necessary to restore
+ the background you chose in ~/.fehbg. So to have
+ feh-set backgrounds restored when you restart X,
+-add the line "eval `cat $HOME/.fehbg`" to your
++add the line "`cat $HOME/.fehbg`" to your
+ X startup script (e.g. ~/.xsession). Note that
+ you only need to do this for non E window
+ managers.

@@ -1,0 +1,198 @@
+diff -ur feh-1.3.4.orig/ChangeLog feh-1.3.4/ChangeLog
+--- feh-1.3.4.orig/ChangeLog	2005-07-23 01:30:37.000000000 +0200
++++ feh-1.3.4/ChangeLog	2008-04-10 11:15:37.000000000 +0200
+@@ -1,3 +1,16 @@
++Sat Oct  1 08:05:06 EDT 2005  Richard Lowe <richlowe@richlowe.net>
++  * (imlib.c): Fix double free in feh_http_load_image
++               when using builtin HTTP support.
++Sat Oct  1 07:25:00 EDT 2005  Richard Lowe <richlowe@richlowe.net>
++  * (imlib.c): Fix http grabbing via wget, wget --cache 0 is no longer valid
++               and treats the 0 as another URL.  Debian bug #330912.
++	           I view this as wget's fault, I'm sure others won't, however.
++  * (imlib.c): Tidy up a minor bit of bothersome logic while there.
++
++Fri Aug 05 17:29:55 BST 2005  Tom Gilbert <tom@linuxbrit.co.uk>
++
++  * Patch from Matthias Drochner to fix compilation on older systems.
++
+ Sat Jul 23 00:30:09 BST 2005  Tom Gilbert <tom@linuxbrit.co.uk>
+ 
+ 	* Include the necessary jpegint header to get lossless rotation working in
+Only in feh-1.3.4: debian
+diff -ur feh-1.3.4.orig/src/imlib.c feh-1.3.4/src/imlib.c
+--- feh-1.3.4.orig/src/imlib.c	2005-07-14 13:59:03.000000000 +0200
++++ feh-1.3.4/src/imlib.c	2008-04-10 11:15:37.000000000 +0200
+@@ -289,10 +289,6 @@
+       snprintf(cppid, sizeof(cppid), "%06ld", (long)ppid);
+       tmpname_timestamper =
+          estrjoin("", "/tmp/feh_", cppid, "_", basename, NULL);
+-   }
+-
+-   if (opt.wget_timestamp)
+-   {
+       newurl = estrdup(url);
+    }
+    else
+@@ -548,8 +544,8 @@
+          }
+          else
+          {
+-            execlp("wget", "wget", "--cache", "0", newurl, "-O", tmpname,
+-                   quiet, (char*) NULL);
++            execlp("wget", "wget", "--cache=off", "-O", tmpname, newurl,
++               quiet, NULL);
+          }
+          eprintf("url: exec failed: wget:");
+       }
+@@ -560,8 +556,8 @@
+          if (!WIFEXITED(status) || WEXITSTATUS(status) != 0)
+          {
+             weprintf("url: wget failed to load URL %s\n", url);
+-            free(tmpname);
+             free(newurl);
++            free(tmpname);
+             D_RETURN(4, NULL);
+          }
+          if (opt.wget_timestamp)
+@@ -572,10 +568,10 @@
+                      tmpname);
+             system(cmd);
+          }
++         free(newurl);
+       }
+    }
+ 
+-   free(newurl);
+    D_RETURN(4, tmpname);
+ }
+ 
+diff -ur feh-1.3.4.orig/src/slideshow.c feh-1.3.4/src/slideshow.c
+--- feh-1.3.4.orig/src/slideshow.c	2005-07-14 13:59:03.000000000 +0200
++++ feh-1.3.4/src/slideshow.c	2008-04-10 11:15:37.000000000 +0200
+@@ -198,7 +198,7 @@
+ 
+    /* Without this, clicking a one-image slideshow reloads it. Not very *
+       intelligent behaviour :-) */
+-   if (filelist_len < 2)
++   if (filelist_len < 2 && opt.cycle_once == 0)
+       D_RETURN_(4);
+ 
+    /* Ok. I do this in such an odd way to ensure that if the last or first *
+@@ -353,8 +353,8 @@
+   D_ENTER(4);
+   if (action)
+   {
+-    D(3, ("Running action %s\n", action));
+     char *sys;
++    D(3, ("Running action %s\n", action));
+     sys = feh_printf(action, file);
+ 
+     if (opt.verbose && !opt.list && !opt.customlist)
+diff -ur feh-1.3.4.orig/src/support.c feh-1.3.4/src/support.c
+--- feh-1.3.4.orig/src/support.c	2008-04-10 11:12:44.000000000 +0200
++++ feh-1.3.4/src/support.c	2008-04-10 11:15:37.000000000 +0200
+@@ -162,6 +162,7 @@
+       /* string for sticking in ~/.fehbg */
+       char *fehbg = NULL;
+       char *home;
++      char filbuf[4096];
+ 
+       /* local display to set closedownmode on */
+       Display *disp2;
+@@ -173,6 +174,7 @@
+ 
+       D(3, ("Falling back to XSetRootWindowPixmap\n"));
+       
++      snprintf(filbuf, sizeof(filbuf), "\"%s\"", fil);
+       if (scaled) {
+          w = scr->width;
+          h = scr->height;
+@@ -189,7 +191,7 @@
+          pmap_d1 = XCreatePixmap(disp, root, w, h, depth);
+          gib_imlib_render_image_on_drawable_at_size(pmap_d1, im, 0, 0, w, h,
+                                                     1, 0, 1);
+-         fehbg = estrjoin(" ", "feh --bg-scale", fil, NULL);
++         fehbg = estrjoin(" ", "feh --bg-scale", filbuf, NULL);
+       } else if (centered) {
+          XGCValues gcval;
+          GC gc;
+@@ -216,14 +218,14 @@
+          y = (h - gib_imlib_image_get_height(im)) >> 1;
+          gib_imlib_render_image_on_drawable(pmap_d1, im, x, y, 1, 0, 0);
+          XFreeGC(disp, gc);
+-         fehbg = estrjoin(" ", "feh --bg-center", fil, NULL);
++         fehbg = estrjoin(" ", "feh --bg-center", filbuf, NULL);
+       } else {
+          w = gib_imlib_image_get_width(im);
+          h = gib_imlib_image_get_height(im);
+          pmap_d1 =
+             XCreatePixmap(disp, root, w, h, depth);
+          gib_imlib_render_image_on_drawable(pmap_d1, im, 0, 0, 1, 0, 0);
+-         fehbg = estrjoin(" ", "feh --bg-tile", fil, NULL);
++         fehbg = estrjoin(" ", "feh --bg-tile", filbuf, NULL);
+       }
+ 
+       if (fehbg) {
+diff -ur feh-1.3.4.orig/src/winwidget.c feh-1.3.4/src/winwidget.c
+--- feh-1.3.4.orig/src/winwidget.c	2005-07-14 13:59:03.000000000 +0200
++++ feh-1.3.4/src/winwidget.c	2008-04-10 11:15:37.000000000 +0200
+@@ -158,6 +158,7 @@
+                         int h)
+ {
+   XSetWindowAttributes attr;
++  XEvent ev;
+   XClassHint *xch;
+   MWMHints mwmhints;
+   Atom prop = None;
+@@ -256,6 +257,22 @@
+     XChangeProperty(disp, ret->win, prop, prop, 32, PropModeReplace,
+                     (unsigned char *) &mwmhints, PROP_MWM_HINTS_ELEMENTS);
+   }
++  if (ret->full_screen) {
++    Atom prop_fs = XInternAtom(disp, "_NET_WM_STATE_FULLSCREEN",  False);
++	Atom prop_state = XInternAtom(disp, "_NET_WM_STATE", False);
++
++	memset(&ev, 0, sizeof(ev));
++	ev.xclient.type = ClientMessage;
++	ev.xclient.message_type = prop_state;
++	ev.xclient.display = disp;
++	ev.xclient.window = ret->win;
++	ev.xclient.format = 32;
++	ev.xclient.data.l[0] = (ret->full_screen ? 1 : 0);
++	ev.xclient.data.l[1] = prop_fs;
++
++    XChangeProperty(disp, ret->win, prop_state, XA_ATOM, 32,
++					PropModeReplace, &prop_fs, 1);
++  }
+ 
+   XSetWMProtocols(disp, ret->win, &wmDeleteWindow, 1);
+   winwidget_update_title(ret);
+@@ -788,6 +805,10 @@
+                  int w,
+                  int h)
+ {
++  Window ignored_window;
++  XWindowAttributes attributes;
++  int tc_x, tc_y;
++
+   D_ENTER(4);
+   if (opt.geom_flags) {
+     winwid->had_resize = 1;
+@@ -800,7 +821,16 @@
+       winwid->w = (w > scr->width) ? scr->width : w;
+       winwid->h = (h > scr->height) ? scr->height : h;
+     }
+-    XResizeWindow(disp, winwid->win, winwid->w, winwid->h);
++    /* XResizeWindow(disp, winwid->win, winwid->w, winwid->h); */
++    XGetWindowAttributes(disp, winwid->win, &attributes);
++    XTranslateCoordinates(disp, winwid->win, attributes.root,
++      -attributes.border_width - attributes.x,
++      -attributes.border_width - attributes.y,
++      &tc_x, &tc_y, &ignored_window);
++    winwid->x = tc_x;                     
++    winwid->y = tc_y;
++    XMoveResizeWindow(disp, winwid->win, tc_x, tc_y, winwid->w, winwid->h);
++
+     winwid->had_resize = 1;
+     XFlush(disp);
+ 
