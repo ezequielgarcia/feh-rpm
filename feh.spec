@@ -3,7 +3,7 @@
 
 Name:           feh 
 Version:        1.3.4
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
@@ -16,9 +16,15 @@ Patch1:         feh-1.3.4-remove_britney_references.patch
 Patch2:         feh-1.3.4-svn-fixes.patch
 Patch3:         feh-1.3.4-man.patch
 Patch4:         feh-1.3.4-bz441527.patch
+Patch5:         feh-1.3.4-dejavu.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  giblib-devel imlib2-devel libjpeg-devel libpng-devel
 BuildRequires:  libXt-devel
+%if 0%{?fedora} > 10
+Requires:       dejavu-sans-fonts
+%else
+Requires:       dejavu-fonts
+%endif
 
 %description
 feh is a versatile and fast image viewer using imlib2, the
@@ -35,6 +41,7 @@ montages as index prints with many user-configurable options.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 
 %build
@@ -45,6 +52,7 @@ make %{?_smp_mflags}
 %install
 rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
+rm $RPM_BUILD_ROOT%{_datadir}/%{name}/fonts/yudit.ttf
 find $RPM_BUILD_ROOT -type f -name "*.la" -exec rm -f {} ';'
 rm -rf $RPM_BUILD_ROOT/usr/doc
 
@@ -62,6 +70,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun Dec 21 2008 Ignacio Vazquez-Abrams <ivazqueznet+rpm@gmail.com> 1.3.4-9
+- Switch from included font to DejaVu Sans
+
 * Thu Apr 10 2008 Hans de Goede <j.w.r.degoede@hhs.nl> 1.3.4-8
 - Remove non free menubg_britney.png from sources
 - Apply various fixes from svn
