@@ -3,7 +3,7 @@
 
 Name:           feh 
 Version:        1.3.4
-Release:        9%{?dist}
+Release:        10%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
@@ -21,7 +21,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  giblib-devel imlib2-devel libjpeg-devel libpng-devel
 BuildRequires:  libXt-devel
 %if 0%{?fedora} > 10
-Requires:       dejavu-sans-fonts
+Requires:       dejavu-fonts-sans
 %else
 Requires:       dejavu-fonts
 %endif
@@ -70,6 +70,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Dec 22 2008 Ignacio Vazquez-Abrams <ivazqueznet+rpm@gmail.com> 1.3.4-10
+- Fix thinko in DejaVu package name
+
 * Sun Dec 21 2008 Ignacio Vazquez-Abrams <ivazqueznet+rpm@gmail.com> 1.3.4-9
 - Switch from included font to DejaVu Sans
 
