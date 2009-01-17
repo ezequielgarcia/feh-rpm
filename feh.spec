@@ -1,9 +1,9 @@
 # No desktop file for feh. It may be a GUI program, but it needs 
 # file names or it just spits out the help.
 
-Name:           feh 
+Name:           feh
 Version:        1.3.4
-Release:        10%{?dist}
+Release:        11%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
@@ -21,7 +21,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  giblib-devel imlib2-devel libjpeg-devel libpng-devel
 BuildRequires:  libXt-devel
 %if 0%{?fedora} > 10
-Requires:       dejavu-fonts-sans
+Requires:       dejavu-sans-fonts
 %else
 Requires:       dejavu-fonts
 %endif
@@ -70,6 +70,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sat Jan 17 2009 Ignacio Vazquez-Abrams <ivazqueznet+rpm@gmail.com> 1.3.4-11
+- Fix font Requires
+
 * Mon Dec 22 2008 Ignacio Vazquez-Abrams <ivazqueznet+rpm@gmail.com> 1.3.4-10
 - Fix thinko in DejaVu package name
 
