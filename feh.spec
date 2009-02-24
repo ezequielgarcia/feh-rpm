@@ -3,7 +3,7 @@
 
 Name:           feh
 Version:        1.3.4
-Release:        11%{?dist}
+Release:        12%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
@@ -70,6 +70,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Feb 24 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.3.4-12
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
+
 * Sat Jan 17 2009 Ignacio Vazquez-Abrams <ivazqueznet+rpm@gmail.com> 1.3.4-11
 - Fix font Requires
 
