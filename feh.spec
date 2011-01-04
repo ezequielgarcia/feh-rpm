@@ -2,21 +2,15 @@
 # file names or it just spits out the help.
 
 Name:           feh
-Version:        1.3.4
-Release:        13%{?dist}
+Version:        1.10.1
+Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
-URL:            http://linuxbrit.co.uk/feh/
-# This is: http://linuxbrit.co.uk/downloads/feh-%{version}.tar.gz with
-# feh-1.3.4/src/menubg_britney.png (which is non free) removed
-Source0:        %{name}-%{version}.tar.gz
-Patch0:         feh-1.3.4-missing-protos.patch
-Patch1:         feh-1.3.4-remove_britney_references.patch
-Patch2:         feh-1.3.4-svn-fixes.patch
-Patch3:         feh-1.3.4-man.patch
-Patch4:         feh-1.3.4-bz441527.patch
-Patch5:         feh-1.3.4-dejavu.patch
+URL:            https://derf.homelinux.org/projects/feh/
+Source0:        http://derf.homelinux.org/projects/feh/feh-1.10.1.tar.bz2
+Patch0:         feh-1.10.1-dejavu.patch
+Patch1:         feh-1.10.1-prefix.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  giblib-devel imlib2-devel libjpeg-devel libpng-devel
 BuildRequires:  libXt-devel
@@ -30,7 +24,7 @@ Requires:       dejavu-fonts
 feh is a versatile and fast image viewer using imlib2, the
 premier image file handling library. feh has many features,
 from simple single file viewing, to multiple file modes using
-a slideshow or multiple windows. feh supports the creation of
+a slide-show or multiple windows. feh supports the creation of
 montages as index prints with many user-configurable options.
 
 
@@ -38,14 +32,8 @@ montages as index prints with many user-configurable options.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-
 
 %build
-%configure
 make %{?_smp_mflags}
 
 
@@ -70,6 +58,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Dec 29 2010 Andrew Potter <agpotter@gmail.com> 1.10.1-1
+- New upstream release
+- Closes CVE-2010-2246 by removing option -G, --wget-timestamp
+
 * Fri Jul 24 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.3.4-13
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
 

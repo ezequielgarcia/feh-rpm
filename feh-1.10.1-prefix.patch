@@ -1,0 +1,19 @@
+diff -up feh-1.10.1/config.mk.prefixorig feh-1.10.1/config.mk
+--- feh-1.10.1/config.mk.prefixorig	2010-12-29 19:58:31.904106871 -0800
++++ feh-1.10.1/config.mk	2010-12-29 20:08:07.946812680 -0800
+@@ -2,13 +2,13 @@ PACKAGE ?= feh
+ VERSION ?= 1.10.1
+ 
+ # Prefix for all installed files
+-PREFIX ?= /usr/local
++PREFIX ?= /usr
+ 
+ # Directories for manuals, executables, docs, data, etc.
+ main_dir = ${DESTDIR}${PREFIX}
+ man_dir = ${main_dir}/share/man
+ bin_dir = ${main_dir}/bin
+-doc_dir = ${main_dir}/share/doc/feh
++doc_dir = ${main_dir}/share/doc/feh-${VERSION}
+ image_dir = ${main_dir}/share/feh/images
+ font_dir = ${main_dir}/share/feh/fonts
+ 
