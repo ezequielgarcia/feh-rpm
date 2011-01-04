@@ -13,7 +13,7 @@ Patch0:         feh-1.10.1-dejavu.patch
 Patch1:         feh-1.10.1-prefix.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  giblib-devel imlib2-devel libjpeg-devel libpng-devel
-BuildRequires:  libXt-devel
+BuildRequires:  libXt-devel libXinerama-devel
 %if 0%{?fedora} > 10
 Requires:       dejavu-sans-fonts
 %else
