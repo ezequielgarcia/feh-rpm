@@ -1,4 +1,4 @@
-# No desktop file for feh. It may be a GUI program, but it needs 
+# No desktop file for feh. It may be a GUI program, but it needs
 # file names or it just spits out the help.
 
 Name:           feh
@@ -8,12 +8,15 @@ Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
 URL:            https://derf.homelinux.org/projects/feh/
-Source0:        http://derf.homelinux.org/projects/feh/feh-1.10.1.tar.bz2
+Source0:        http://derf.homelinux.org/projects/feh/feh-%{version}.tar.bz2
 Patch0:         feh-1.10.1-dejavu.patch
 Patch1:         feh-1.10.1-prefix.patch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildRequires:  giblib-devel imlib2-devel libjpeg-devel libpng-devel
-BuildRequires:  libXt-devel libXinerama-devel
+BuildRequires:  giblib-devel
+BuildRequires:  imlib2-devel
+BuildRequires:  libjpeg-devel
+BuildRequires:  libpng-devel
+BuildRequires:  libXt-devel
+BuildRequires:  libXinerama-devel
 %if 0%{?fedora} > 10
 Requires:       dejavu-sans-fonts
 %else
@@ -33,20 +36,16 @@ montages as index prints with many user-configurable options.
 %patch0 -p1
 %patch1 -p1
 
+
 %build
 make %{?_smp_mflags}
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
-rm $RPM_BUILD_ROOT%{_datadir}/%{name}/fonts/yudit.ttf
-find $RPM_BUILD_ROOT -type f -name "*.la" -exec rm -f {} ';'
-rm -rf $RPM_BUILD_ROOT/usr/doc
-
-
-%clean
-rm -rf $RPM_BUILD_ROOT
+make install DESTDIR=%{buildroot}
+rm %{buildroot}%{_datadir}/%{name}/fonts/yudit.ttf
+find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
+rm -rf %{buildroot}/usr/doc
 
 
 %files
