@@ -33,8 +33,8 @@ montages as index prints with many user-configurable options.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+%patch0 -p1 -b dejavu
+%patch1 -p1 -b prefix
 
 
 %build
