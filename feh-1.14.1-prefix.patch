@@ -1,8 +1,9 @@
-diff -up feh-1.10.1/config.mk.prefixorig feh-1.10.1/config.mk
---- feh-1.10.1/config.mk.prefixorig	2010-12-29 19:58:31.904106871 -0800
-+++ feh-1.10.1/config.mk	2010-12-29 20:08:07.946812680 -0800
-@@ -2,13 +2,13 @@ PACKAGE ?= feh
- VERSION ?= 1.10.1
+diff -u -r -U5 feh-1.14.1//config.mk feh-1.14.1.prefix//config.mk
+--- feh-1.14.1//config.mk	2011-05-19 16:36:13.000000000 -0400
++++ feh-1.14.1.prefix//config.mk	2011-06-24 23:04:52.394461791 -0400
+@@ -1,16 +1,16 @@
+ PACKAGE ?= feh
+ VERSION ?= 1.14.1
  
  # Prefix for all installed files
 -PREFIX ?= /usr/local
@@ -16,4 +17,6 @@ diff -up feh-1.10.1/config.mk.prefixorig feh-1.10.1/config.mk
 +doc_dir = ${main_dir}/share/doc/feh-${VERSION}
  image_dir = ${main_dir}/share/feh/images
  font_dir = ${main_dir}/share/feh/fonts
+ example_dir = ${main_dir}/share/doc/feh/examples
  
+ # default CFLAGS
