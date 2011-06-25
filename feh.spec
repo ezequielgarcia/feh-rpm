@@ -35,8 +35,8 @@ montages as index prints with many user-configurable options.
 
 %prep
 %setup -q
-%patch0 -p1 -b dejavu
-%patch1 -p1 -b prefix
+%patch0 -p1 -b .dejavu
+%patch1 -p1 -b .prefix
 
 
 %build
@@ -54,8 +54,9 @@ rm -rf %{buildroot}/usr/doc
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING ChangeLog README TODO
 %{_bindir}/*
-%{_datadir}/%{name}
+%{_datadir}/%{name}/
 %{_mandir}/man[^3]/*
+%{_docdir}/%{name}/
 
 
 %changelog
