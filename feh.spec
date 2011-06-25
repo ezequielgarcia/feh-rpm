@@ -2,8 +2,8 @@
 # file names or it just spits out the help.
 
 Name:           feh
-Version:        1.10.1
-Release:        2%{?dist}
+Version:        1.14.1
+Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
@@ -57,6 +57,9 @@ rm -rf %{buildroot}/usr/doc
 
 
 %changelog
+* Fri Jun 24 2011 Ben Boeckel <mathstuf@gmail.com> - 1.14.1-1
+- Update to 1.14.1
+
 * Tue Feb 08 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.10.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
 
