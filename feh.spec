@@ -2,7 +2,7 @@
 # file names or it just spits out the help.
 
 Name:           feh
-Version:        1.14.1
+Version:        1.14.2
 Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
@@ -60,6 +60,9 @@ rm -rf %{buildroot}/usr/doc
 
 
 %changelog
+* Mon Jul 25 2011 Ben Boeckel <mathstuf@gmail.com> - 1.14.2-1
+- Update to 1.14.2
+
 * Fri Jun 24 2011 Ben Boeckel <mathstuf@gmail.com> - 1.14.1-1
 - Update to 1.14.1
 
