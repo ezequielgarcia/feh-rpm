@@ -10,7 +10,7 @@ License:        MIT
 URL:            https://derf.homelinux.org/projects/feh/
 Source0:        http://derf.homelinux.org/projects/feh/feh-%{version}.tar.bz2
 Patch0:         feh-1.10.1-dejavu.patch
-Patch1:         feh-1.14.1-prefix.patch
+Patch1:         feh-2.1-docdir.patch
 
 BuildRequires:  giblib-devel
 BuildRequires:  imlib2-devel
@@ -36,7 +36,7 @@ montages as index prints with many user-configurable options.
 %prep
 %setup -q
 %patch0 -p1 -b .dejavu
-%patch1 -p1 -b .prefix
+%patch1 -p1 -b .docdir
 
 
 %build
@@ -44,7 +44,7 @@ make %{?_smp_mflags}
 
 
 %install
-make install DESTDIR=%{buildroot}
+make install PREFIX=%{_prefix} DESTDIR=%{buildroot}
 rm %{buildroot}%{_datadir}/%{name}/fonts/yudit.ttf
 find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 rm -rf %{buildroot}/usr/doc

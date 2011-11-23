@@ -1,13 +1,7 @@
-diff -u -r -U5 feh-1.14.1//config.mk feh-1.14.1.prefix//config.mk
---- feh-1.14.1//config.mk	2011-05-19 16:36:13.000000000 -0400
-+++ feh-1.14.1.prefix//config.mk	2011-06-24 23:04:52.394461791 -0400
-@@ -1,16 +1,16 @@
- PACKAGE ?= feh
- VERSION ?= 1.14.1
- 
- # Prefix for all installed files
--PREFIX ?= /usr/local
-+PREFIX ?= /usr
+diff -u -r -U5 feh-2.1/config.mk feh-2.1.docdir/config.mk
+--- feh-2.1/config.mk	2011-11-02 05:59:20.000000000 -0400
++++ feh-2.1.docdir/config.mk	2011-11-22 22:09:30.243996677 -0500
+@@ -6,11 +6,11 @@
  
  # Directories for manuals, executables, docs, data, etc.
  main_dir = ${DESTDIR}${PREFIX}
