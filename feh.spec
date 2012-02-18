@@ -10,7 +10,7 @@ License:        MIT
 URL:            https://derf.homelinux.org/projects/feh/
 Source0:        http://derf.homelinux.org/projects/feh/feh-%{version}.tar.bz2
 Patch0:         feh-1.10.1-dejavu.patch
-Patch1:         feh-1.14.1-prefix.patch
+Patch1:         feh-1.16.2-prefix.patch
 
 BuildRequires:  giblib-devel
 BuildRequires:  imlib2-devel
