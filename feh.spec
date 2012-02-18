@@ -2,8 +2,8 @@
 # file names or it just spits out the help.
 
 Name:           feh
-Version:        2.1
-Release:        2%{?dist}
+Version:        2.3
+Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
@@ -60,6 +60,9 @@ rm -rf %{buildroot}/usr/doc
 
 
 %changelog
+* Sat Feb 18 2012 Ben Boeckel <mathstuf@gmail.com> - 2.3-1
+- Update to 2.3
+
 * Fri Jan 13 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
