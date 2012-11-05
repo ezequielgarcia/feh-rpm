@@ -2,8 +2,8 @@
 # file names or it just spits out the help.
 
 Name:           feh
-Version:        2.3
-Release:        3%{?dist}
+Version:        2.7
+Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
@@ -60,6 +60,9 @@ rm -rf %{buildroot}/usr/doc
 
 
 %changelog
+* Sun Nov 04 2012 Ben Boeckel <mathstuf@gmail.com> - 2.7-1
+- Update to 2.7
+
 * Sun Nov 04 2012 Ben Boeckel <mathstuf@gmail.com> - 2.3-3
 - Pass PREFIX to the build step
 
