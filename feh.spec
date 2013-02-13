@@ -3,7 +3,7 @@
 
 Name:           feh
 Version:        2.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
@@ -60,6 +60,9 @@ rm -rf %{buildroot}/usr/doc
 
 
 %changelog
+* Wed Feb 13 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.7-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
 * Sun Nov 04 2012 Ben Boeckel <mathstuf@gmail.com> - 2.7-1
 - Update to 2.7
 
