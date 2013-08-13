@@ -3,14 +3,13 @@
 
 Name:           feh
 Version:        2.7
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
 URL:            https://derf.homelinux.org/projects/feh/
 Source0:        http://derf.homelinux.org/projects/feh/feh-%{version}.tar.bz2
 Patch0:         feh-1.10.1-dejavu.patch
-Patch1:         feh-2.1-docdir.patch
 
 BuildRequires:  giblib-devel
 BuildRequires:  imlib2-devel
@@ -24,6 +23,7 @@ Requires:       dejavu-sans-fonts
 %else
 Requires:       dejavu-fonts
 %endif
+%{!?_pkgdocdir: %global _pkgdocdir %{_docdir}/%{name}-%{version}}
 
 %description
 feh is a versatile and fast image viewer using imlib2, the
@@ -36,10 +36,15 @@ montages as index prints with many user-configurable options.
 %prep
 %setup -q
 %patch0 -p1 -b .dejavu
-%patch1 -p1 -b .docdir
 
 
 %build
+# Propagate values into config.mk
+sed -i \
+  -e "s|^doc_dir =.*$|doc_dir = \$(DESTDIR)%{_pkgdocdir}|" \
+  -e "s|^example_dir =.*$|example_dir = \$(doc_dir)/examples|" \
+  -e "s|^CFLAGS ?=.*$|CFLAGS = ${RPM_OPT_FLAGS}|" \
+  config.mk
 make PREFIX=%{_prefix} %{?_smp_mflags}
 
 
@@ -47,7 +52,6 @@ make PREFIX=%{_prefix} %{?_smp_mflags}
 make install PREFIX=%{_prefix} DESTDIR=%{buildroot}
 rm %{buildroot}%{_datadir}/%{name}/fonts/yudit.ttf
 find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
-rm -rf %{buildroot}/usr/doc
 
 
 %files
@@ -56,10 +60,13 @@ rm -rf %{buildroot}/usr/doc
 %{_bindir}/*
 %{_datadir}/%{name}/
 %{_mandir}/man[^3]/*
-%{_docdir}/%{name}/
 
 
 %changelog
+* Tue Aug 13 2013 Ralf Corsépius <corsepiu@fedoraproject.org> - 2.7-5
+- Reflect docdir changes (FTBFS RHBZ#992244).
+- Let package acknowledge RPM_OPT_FLAGS.
+
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.7-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
