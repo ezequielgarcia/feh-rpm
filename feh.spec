@@ -59,6 +59,7 @@ find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 %doc AUTHORS COPYING ChangeLog README TODO
 %{_bindir}/*
 %{_datadir}/%{name}/
+%{_datadir}/applications/%{name}.desktop
 %{_mandir}/man[^3]/*
 
 
