@@ -2,13 +2,13 @@
 # file names or it just spits out the help.
 
 Name:           feh
-Version:        2.7
-Release:        5%{?dist}
+Version:        2.9.3
+Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
-URL:            https://derf.homelinux.org/projects/feh/
-Source0:        http://derf.homelinux.org/projects/feh/feh-%{version}.tar.bz2
+URL:            http://feh.finalrewind.org/
+Source0:        http://feh.finalrewind.org/feh-2.9.3.tar.bz2
 Patch0:         feh-1.10.1-dejavu.patch
 
 BuildRequires:  giblib-devel
@@ -63,6 +63,10 @@ find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
 
 %changelog
+* Wed Nov 20 2013 Ben Boeckel <mathstuf@gmail.com> - 2.9.3-1
+- Update to 2.9.3
+- Update URL
+
 * Tue Aug 13 2013 Ralf Corsépius <corsepiu@fedoraproject.org> - 2.7-5
 - Reflect docdir changes (FTBFS RHBZ#992244).
 - Let package acknowledge RPM_OPT_FLAGS.
