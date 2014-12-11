@@ -1,14 +1,11 @@
-# No desktop file for feh. It may be a GUI program, but it needs
-# file names or it just spits out the help.
-
 Name:           feh
-Version:        2.9.3
-Release:        3%{?dist}
+Version:        2.12
+Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
 URL:            http://feh.finalrewind.org/
-Source0:        http://feh.finalrewind.org/feh-2.9.3.tar.bz2
+Source0:        http://feh.finalrewind.org/feh-%{version}.tar.bz2
 Patch0:         feh-1.10.1-dejavu.patch
 
 BuildRequires:  giblib-devel
@@ -64,6 +61,9 @@ find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
 
 %changelog
+* Wed Dec 10 2014 Ben Boeckel <mathstuf@gmail.com> - 2.12-1
+- Update to 2.12
+
 * Sat Aug 16 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.9.3-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
