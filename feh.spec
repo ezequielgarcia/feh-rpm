@@ -46,7 +46,7 @@ make PREFIX=%{_prefix} %{?_smp_mflags}
 
 
 %install
-make install PREFIX=%{_prefix} DESTDIR=%{buildroot}
+%make_install PREFIX=%{_prefix}
 rm %{buildroot}%{_datadir}/%{name}/fonts/yudit.ttf
 find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
