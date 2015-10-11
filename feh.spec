@@ -1,6 +1,6 @@
 Name:           feh
 Version:        2.13.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
@@ -52,15 +52,21 @@ find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
 
 %files
-%defattr(-,root,root,-)
-%doc AUTHORS COPYING ChangeLog README TODO
+%license COPYING
+%doc AUTHORS ChangeLog README TODO
 %{_bindir}/*
 %{_datadir}/%{name}/
 %{_datadir}/applications/%{name}.desktop
 %{_mandir}/man[^3]/*
+%{_docdir}/feh/
 
 
 %changelog
+* Sat Oct 10 2015 Ben Boeckel <mathstuf@gmail.com> - 2.13.1-2
+- use license tag
+- package examples
+- remove defattr line
+
 * Sun Jul 19 2015 Ben Boeckel <mathstuf@gmail.com> - 2.13.1-1
 - Update to 2.13.1
 
