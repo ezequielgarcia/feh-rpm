@@ -1,6 +1,6 @@
 Name:           feh
-Version:        2.13.1
-Release:        2%{?dist}
+Version:        2.14
+Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
@@ -62,6 +62,9 @@ find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
 
 %changelog
+* Tue Oct 13 2015 Ben Boeckel <mathstuf@gmail.com> - 2.14-1
+- update to 2.14
+
 * Sat Oct 10 2015 Ben Boeckel <mathstuf@gmail.com> - 2.13.1-2
 - use license tag
 - package examples
