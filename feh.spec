@@ -1,6 +1,6 @@
 Name:           feh
-Version:        2.14
-Release:        2%{?dist}
+Version:        2.15.2
+Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
@@ -57,11 +57,14 @@ find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 %{_bindir}/*
 %{_datadir}/%{name}/
 %{_datadir}/applications/%{name}.desktop
-%{_mandir}/man[^3]/*
+%{_mandir}/man1/*
 %{_docdir}/feh/
 
 
 %changelog
+* Sat Apr 23 2016 Ben Boeckel <mathstuf@gmail.com> - 2.15.2-1
+- update to 2.15.2
+
 * Wed Feb 03 2016 Fedora Release Engineering <releng@fedoraproject.org> - 2.14-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
