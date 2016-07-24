@@ -1,5 +1,5 @@
 Name:           feh
-Version:        2.15.2
+Version:        2.16.1
 Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
@@ -15,11 +15,7 @@ BuildRequires:  libjpeg-devel
 BuildRequires:  libpng-devel
 BuildRequires:  libXt-devel
 BuildRequires:  libXinerama-devel
-%if 0%{?fedora} > 10
 Requires:       dejavu-sans-fonts
-%else
-Requires:       dejavu-fonts
-%endif
 %{!?_pkgdocdir: %global _pkgdocdir %{_docdir}/%{name}-%{version}}
 
 %description
@@ -62,6 +58,9 @@ find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
 
 %changelog
+* Sat Jul 23 2016 Ben Boeckel <mathstuf@gmail.com> - 2.16.1-1
+- update to 2.16.1
+
 * Sat Apr 23 2016 Ben Boeckel <mathstuf@gmail.com> - 2.15.2-1
 - update to 2.15.2
 
