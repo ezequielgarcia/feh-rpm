@@ -1,10 +1,10 @@
 Name:           feh
-Version:        2.16.1
+Version:        2.16.2
 Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
-URL:            http://feh.finalrewind.org/
+URL:            http://feh.finalrewind.org
 Source0:        http://feh.finalrewind.org/feh-%{version}.tar.bz2
 Patch0:         feh-1.10.1-dejavu.patch
 
@@ -58,6 +58,9 @@ find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
 
 %changelog
+* Tue Aug 02 2016 Fabio Alessandro Locati <fale@redhat.com> - 2.16.2-1
+- Update to 2.16.2
+
 * Sat Jul 23 2016 Ben Boeckel <mathstuf@gmail.com> - 2.16.1-1
 - update to 2.16.1
 
