@@ -1,5 +1,5 @@
 Name:           feh
-Version:        2.16.2
+Version:        2.17.1
 Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
@@ -49,15 +49,21 @@ find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
 %files
 %license COPYING
-%doc AUTHORS ChangeLog README TODO
+%doc %{_docdir}/feh/
 %{_bindir}/*
 %{_datadir}/%{name}/
 %{_datadir}/applications/%{name}.desktop
 %{_mandir}/man1/*
-%{_docdir}/feh/
-
+%{_datarootdir}/icons/hicolor/48x48/apps/feh.png
+%{_datarootdir}/icons/hicolor/scalable/apps/feh.svg
 
 %changelog
+* Thu Sep 01 2016 Fabio Alessandro Locati <fale@redhat.com> - 2.17.1-1
+- Update to 2.17.1
+
+* Mon Aug 29 2016 Fabio Alessandro Locati <fale@redhat.com> - 2.17.0-1
+- Update to 2.17.0
+
 * Tue Aug 02 2016 Fabio Alessandro Locati <fale@redhat.com> - 2.16.2-1
 - Update to 2.16.2
 
