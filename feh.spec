@@ -1,5 +1,5 @@
 Name:           feh
-Version:        2.17.1
+Version:        2.18
 Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
@@ -25,11 +25,9 @@ from simple single file viewing, to multiple file modes using
 a slide-show or multiple windows. feh supports the creation of
 montages as index prints with many user-configurable options.
 
-
 %prep
 %setup -q
 %patch0 -p1 -b .dejavu
-
 
 %build
 # Propagate values into config.mk
@@ -58,13 +56,16 @@ find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 %{_datarootdir}/icons/hicolor/scalable/apps/feh.svg
 
 %changelog
-* Thu Sep 01 2016 Fabio Alessandro Locati <fale@redhat.com> - 2.17.1-1
+* Sun Dec 11 2016 Fabio Alessandro Locati <fale@fedoraproject.org> - 2.18-1
+- Update to 2.18
+
+* Thu Sep 01 2016 Fabio Alessandro Locati <fale@fedoraproject.org> - 2.17.1-1
 - Update to 2.17.1
 
-* Mon Aug 29 2016 Fabio Alessandro Locati <fale@redhat.com> - 2.17.0-1
+* Mon Aug 29 2016 Fabio Alessandro Locati <fale@fedoraproject.org> - 2.17.0-1
 - Update to 2.17.0
 
-* Tue Aug 02 2016 Fabio Alessandro Locati <fale@redhat.com> - 2.16.2-1
+* Tue Aug 02 2016 Fabio Alessandro Locati <fale@fedoraproject.org> - 2.16.2-1
 - Update to 2.16.2
 
 * Sat Jul 23 2016 Ben Boeckel <mathstuf@gmail.com> - 2.16.1-1
