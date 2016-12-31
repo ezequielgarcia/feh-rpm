@@ -1,6 +1,6 @@
 Name:           feh
 Version:        2.18
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
@@ -15,6 +15,7 @@ BuildRequires:  libjpeg-devel
 BuildRequires:  libpng-devel
 BuildRequires:  libXt-devel
 BuildRequires:  libXinerama-devel
+BuildRequires:  libexif-devel
 Requires:       dejavu-sans-fonts
 %{!?_pkgdocdir: %global _pkgdocdir %{_docdir}/%{name}-%{version}}
 
@@ -36,7 +37,7 @@ sed -i \
   -e "s|^example_dir =.*$|example_dir = \$(doc_dir)/examples|" \
   -e "s|^CFLAGS ?=.*$|CFLAGS = ${RPM_OPT_FLAGS}|" \
   config.mk
-make PREFIX=%{_prefix} %{?_smp_mflags}
+make exif=1 PREFIX=%{_prefix} %{?_smp_mflags}
 
 
 %install
@@ -56,6 +57,9 @@ find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 %{_datarootdir}/icons/hicolor/scalable/apps/feh.svg
 
 %changelog
+* Sun Jan 01 2017 Fabio Alessandro Locati <fale@fedoraproject.org> - 2.18-2
+- Enable EXIF
+
 * Sun Dec 11 2016 Fabio Alessandro Locati <fale@fedoraproject.org> - 2.18-1
 - Update to 2.18
 
