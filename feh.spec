@@ -1,6 +1,6 @@
 Name:           feh
-Version:        2.18
-Release:        2%{?dist}
+Version:        2.18.1
+Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
@@ -57,6 +57,9 @@ find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 %{_datarootdir}/icons/hicolor/scalable/apps/feh.svg
 
 %changelog
+* Mon Jan 23 2017 Fabio Alessandro Locati <fale@fedoraproject.org> - 2.18.1-1
+- Update to 2.18.1
+
 * Sun Jan 01 2017 Fabio Alessandro Locati <fale@fedoraproject.org> - 2.18-2
 - Enable EXIF
 
