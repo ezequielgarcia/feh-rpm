@@ -219,13 +219,13 @@ find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 - proper dist tag
 
 * Tue May 03 2005 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.1-1
-  Bump to 1.3.1
+- Bump to 1.3.1
 
 * Mon Apr 25 2005 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.0-3
-  Spec file cleanup, dist tag
+- Spec file cleanup, dist tag
 
 * Wed Mar 30 2005 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.0-2
-  Spec file cleanup, plus would upgrade linuxbrit rpm
+- Spec file cleanup, plus would upgrade linuxbrit rpm
 
 * Fri Mar 25 2005 Aaron Kurtz <a.kurtz@hardsun.net> - 1.3.0-1
 - Initial Fedora RPM release
