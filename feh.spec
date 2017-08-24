@@ -39,16 +39,15 @@ sed -i \
   config.mk
 make exif=1 PREFIX=%{_prefix} %{?_smp_mflags}
 
-
 %install
 %make_install PREFIX=%{_prefix}
 rm %{buildroot}%{_datadir}/%{name}/fonts/yudit.ttf
 find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
-
+rm %{buildroot}%{_docdir}/%{name}/examples/find-lowres
 
 %files
 %license COPYING
-%doc %attr(0644,-,-) %{_docdir}/%{name}
+%doc %{_docdir}/%{name}
 %{_bindir}/*
 %{_datadir}/%{name}/
 %{_datadir}/applications/%{name}.desktop
