@@ -48,7 +48,7 @@ find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
 %files
 %license COPYING
-%doc %attr(rw,-,-) %{_docdir}/${name}
+%doc %attr(0644,-,-) %{_docdir}/%{name}
 %{_bindir}/*
 %{_datadir}/%{name}/
 %{_datadir}/applications/%{name}.desktop
