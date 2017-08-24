@@ -1,5 +1,5 @@
 Name:           feh
-Version:        2.19.2
+Version:        2.19.3
 Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
@@ -48,7 +48,7 @@ find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
 %files
 %license COPYING
-%doc %{_docdir}/feh/
+%doc %attr(rw,-,-) %{_docdir}/${name}
 %{_bindir}/*
 %{_datadir}/%{name}/
 %{_datadir}/applications/%{name}.desktop
@@ -57,6 +57,10 @@ find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 %{_datarootdir}/icons/hicolor/scalable/apps/feh.svg
 
 %changelog
+* Thu Aug 24 2017 Fabio Alessandro Locati <fale@fedoraproject.org> - 2.19.3-1
+- Update to 2.19.3
+- Fix rpmlint complains
+
 * Sun Aug 13 2017 Fabio Alessandro Locati <fale@fedoraproject.org> - 2.19.2-1
 - Update to 2.19.2
 
