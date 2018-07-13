@@ -1,6 +1,6 @@
 Name:           feh
 Version:        2.19.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
@@ -56,6 +56,9 @@ rm %{buildroot}%{_docdir}/%{name}/examples/find-lowres
 %{_datarootdir}/icons/hicolor/scalable/apps/feh.svg
 
 %changelog
+* Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.19.3-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
 * Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.19.3-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
