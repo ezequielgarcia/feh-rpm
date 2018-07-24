@@ -8,6 +8,7 @@ URL:            http://feh.finalrewind.org
 Source0:        http://feh.finalrewind.org/feh-%{version}.tar.bz2
 Patch0:         feh-1.10.1-dejavu.patch
 
+BuildRequires:  gcc
 BuildRequires:  giblib-devel
 BuildRequires:  imlib2-devel
 BuildRequires:  libcurl-devel
