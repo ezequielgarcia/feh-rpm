@@ -1,6 +1,6 @@
 Name:           feh
-Version:        2.19.3
-Release:        3%{?dist}
+Version:        2.28
+Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
 License:        MIT
@@ -9,7 +9,6 @@ Source0:        http://feh.finalrewind.org/feh-%{version}.tar.bz2
 Patch0:         feh-1.10.1-dejavu.patch
 
 BuildRequires:  gcc
-BuildRequires:  giblib-devel
 BuildRequires:  imlib2-devel
 BuildRequires:  libcurl-devel
 BuildRequires:  libjpeg-devel
@@ -17,6 +16,8 @@ BuildRequires:  libpng-devel
 BuildRequires:  libXt-devel
 BuildRequires:  libXinerama-devel
 BuildRequires:  libexif-devel
+BuildRequires:  perl-Test-Command
+BuildRequires:  perl-Test-Harness
 Requires:       dejavu-sans-fonts
 %{!?_pkgdocdir: %global _pkgdocdir %{_docdir}/%{name}-%{version}}
 
@@ -28,8 +29,7 @@ a slide-show or multiple windows. feh supports the creation of
 montages as index prints with many user-configurable options.
 
 %prep
-%setup -q
-%patch0 -p1 -b .dejavu
+%autosetup -p1
 
 %build
 # Propagate values into config.mk
@@ -38,13 +38,17 @@ sed -i \
   -e "s|^example_dir =.*$|example_dir = \$(doc_dir)/examples|" \
   -e "s|^CFLAGS ?=.*$|CFLAGS = ${RPM_OPT_FLAGS}|" \
   config.mk
-make exif=1 PREFIX=%{_prefix} %{?_smp_mflags}
+%make_build debug=1 curl=1 exif=1 test=1 xinerama=1
+
 
 %install
 %make_install PREFIX=%{_prefix}
 rm %{buildroot}%{_datadir}/%{name}/fonts/yudit.ttf
 find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 rm %{buildroot}%{_docdir}/%{name}/examples/find-lowres
+
+%check
+make test
 
 %files
 %license COPYING
@@ -57,6 +61,9 @@ rm %{buildroot}%{_docdir}/%{name}/examples/find-lowres
 %{_datarootdir}/icons/hicolor/scalable/apps/feh.svg
 
 %changelog
+* Sat Oct 27 2018 Filipe Rosset <rosset.filipe@gmail.com> - 2.28-1
+- update to 2.28 fixes rhbz #1438979 #1444077 and #1602421
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.19.3-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
