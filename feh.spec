@@ -1,5 +1,5 @@
 Name:           feh
-Version:        2.28.1
+Version:        3.1
 Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 Group:          Applications/Multimedia
@@ -61,6 +61,9 @@ make test
 %{_datarootdir}/icons/hicolor/scalable/apps/feh.svg
 
 %changelog
+* Thu Nov 22 2018 Filipe Rosset <rosset.filipe@gmail.com> - 3.1-1
+- update to 3.1
+
 * Thu Nov 22 2018 Filipe Rosset <rosset.filipe@gmail.com> - 2.28.1-1
 - update to 2.28.1
 
