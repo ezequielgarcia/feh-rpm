@@ -1,11 +1,13 @@
 Name:           feh
 Version:        3.1.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 License:        MIT
 URL:            http://feh.finalrewind.org
 Source0:        http://feh.finalrewind.org/feh-%{version}.tar.bz2
 Patch0:         feh-1.10.1-dejavu.patch
+# https://github.com/derf/feh/pull/489
+Patch1:         0001-events-guard-against-NULL-returns-from-imlib-calls.patch
 
 BuildRequires:  gcc
 BuildRequires:  imlib2-devel
@@ -60,6 +62,9 @@ make test
 %{_datarootdir}/icons/hicolor/scalable/apps/feh.svg
 
 %changelog
+* Tue Oct 29 2019 Ben Boeckel <mathstuf@gmail.com> - 3.1.3-3
+- Add patch to fix rhbz#1440503 (crash when editing with large images)
+
 * Thu Jul 25 2019 Fedora Release Engineering <releng@fedoraproject.org> - 3.1.3-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
