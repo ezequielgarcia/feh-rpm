@@ -1,10 +1,10 @@
 Name:           feh
-Version:        3.1.3
-Release:        3%{?dist}
+Version:        3.2.1
+Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 License:        MIT
 URL:            http://feh.finalrewind.org
-Source0:        http://feh.finalrewind.org/feh-%{version}.tar.bz2
+Source0:        https://github.com/derf/feh/archive/%{version}/%{name}-%{version}.tar.gz
 Patch0:         feh-1.10.1-dejavu.patch
 # https://github.com/derf/feh/pull/489
 Patch1:         0001-events-guard-against-NULL-returns-from-imlib-calls.patch
@@ -30,7 +30,7 @@ a slide-show or multiple windows. feh supports the creation of
 montages as index prints with many user-configurable options.
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n feh-%{version}
 
 %build
 # Propagate values into config.mk
@@ -62,6 +62,10 @@ make test
 %{_datarootdir}/icons/hicolor/scalable/apps/feh.svg
 
 %changelog
+* Tue Oct 29 2019 Ben Boeckel <mathstuf@gmail.com> - 3.2.1-1
+- Update to 3.2.1
+- Switch to Github for source tarballs
+
 * Tue Oct 29 2019 Ben Boeckel <mathstuf@gmail.com> - 3.1.3-3
 - Add patch to fix rhbz#1440503 (crash when editing with large images)
 
