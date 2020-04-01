@@ -19,11 +19,12 @@ diff -up feh-1.10.1/src/feh.h.orig feh-1.10.1/src/feh.h
 diff -up feh-1.10.1/src/imlib.c.orig feh-1.10.1/src/imlib.c
 --- feh-1.10.1/src/imlib.c.orig	2010-12-29 19:45:00.074336772 -0800
 +++ feh-1.10.1/src/imlib.c	2010-12-29 19:45:06.425802860 -0800
-@@ -69,6 +69,7 @@ void init_imlib_fonts(void)
+@@ -69,6 +69,8 @@ void init_imlib_fonts(void)
  {
  	/* Set up the font stuff */
  	imlib_add_path_to_font_path(".");
 +	imlib_add_path_to_font_path("/usr/share/fonts/dejavu");
++	imlib_add_path_to_font_path("/usr/share/fonts/dejavu-sans-fonts");
  	imlib_add_path_to_font_path(PREFIX "/share/feh/fonts");
  
  	return;

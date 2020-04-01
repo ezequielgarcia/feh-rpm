@@ -1,13 +1,11 @@
 Name:           feh
-Version:        3.2.1
-Release:        2%{?dist}
+Version:        3.3
+Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 License:        MIT
 URL:            http://feh.finalrewind.org
 Source0:        https://github.com/derf/feh/archive/%{version}/%{name}-%{version}.tar.gz
 Patch0:         feh-1.10.1-dejavu.patch
-# https://github.com/derf/feh/pull/489
-Patch1:         0001-events-guard-against-NULL-returns-from-imlib-calls.patch
 
 BuildRequires:  gcc
 BuildRequires:  imlib2-devel
@@ -39,7 +37,8 @@ sed -i \
   -e "s|^example_dir =.*$|example_dir = \$(doc_dir)/examples|" \
   -e "s|^CFLAGS ?=.*$|CFLAGS = ${RPM_OPT_FLAGS}|" \
   config.mk
-%make_build debug=1 curl=1 exif=1 test=1 xinerama=1
+%make_build PREFIX="%{_prefix}" VERSION="%{version}" \
+    curl=1 exif=1 test=1 xinerama=1
 
 
 %install
@@ -62,6 +61,13 @@ make test
 %{_datarootdir}/icons/hicolor/scalable/apps/feh.svg
 
 %changelog
+* Wed Apr 01 2020 Aleksei Bavshin <alebastr89@gmail.com> - 3.3-1
+- Update to 3.3 (#1779292)
+- Set PREFIX and VERSION during the compilation (#1798743)
+- Adjust font patch for f32 dejavu-sans-fonts packaging changes
+- Disable debug build; it was overriding optimization flags with -O0
+- Remove upstreamed patch
+
 * Tue Jan 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 3.2.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
