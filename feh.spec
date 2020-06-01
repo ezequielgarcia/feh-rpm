@@ -1,5 +1,5 @@
 Name:           feh
-Version:        3.4
+Version:        3.4.1
 Release:        1%{?dist}
 Summary:        Fast command line image viewer using Imlib2
 License:        MIT
@@ -61,6 +61,9 @@ make test
 %{_datarootdir}/icons/hicolor/scalable/apps/feh.svg
 
 %changelog
+* Mon Jun 01 2020 Ben Boeckel <mathstuf@gmail.com> - 3.4.1-1
+- Update to 3.4.1
+
 * Mon Apr 13 2020 Ben Boeckel <mathstuf@gmail.com> - 3.4-1
 - Update to 3.4
 
