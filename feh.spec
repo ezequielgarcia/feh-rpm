@@ -17,6 +17,7 @@ BuildRequires:  libXinerama-devel
 BuildRequires:  libexif-devel
 BuildRequires:  perl-Test-Command
 BuildRequires:  perl-Test-Harness
+BuildRequires: make
 Requires:       dejavu-sans-fonts
 %{!?_pkgdocdir: %global _pkgdocdir %{_docdir}/%{name}-%{version}}
 
